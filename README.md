@@ -1,6 +1,7 @@
 # Simple Microservice on Macos
 
 ### Tech Stack
+- TypeScript
 - NodeJS
 - Ingress NGINX
 - Docker
