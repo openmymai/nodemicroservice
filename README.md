@@ -1,6 +1,15 @@
-# Simple Microservice on Macos
+# Simple Microservices on Macos
+Building applications is more than just meeting the client's needs. Due to the large system size, developers face various challenges, including the maintenance of the codebases, the implementation of new features, bug fixing, and managing user roles. At scale, these considerations are non-trivial, and developers have to use various methods when architecting systems to avoid them.
 
-### Tech Stack
+Monolithic applications commonly encounter these problems, and distributed systems are typically used to alleviate these issues. A distributed system consists of various components spread out over the network that function independently. A distributed application consists of several loosely coupled microservices that work together to meet the user’s needs.
+
+## Benefits of microservice architecture
+Since microservices are loosely coupled and have a clearly defined purpose, the application is easier to manage and understand. Here are a few key benefits of using a microservice-based architecture:
+- **Scalability** is easy, as you can think of the whole system as a collection of services, each interfacing with other microservices. This allows you to scale up, down, or out based on the resources needed by individual microservices instead of the entire application (i.e., monolithic architecture).
+- **Simplified developer experience** so that a new developer joining the team does not have to understand the entire system but only the context of the service they are working on. This improves productivity as they can focus on a single code base and its functionality.
+- **Platform independence and flexibility** so that developers can choose the best tools for the job when building services for the system.
+
+## Tech Stack
 - TypeScript
 - NodeJS
 - Ingress NGINX
@@ -8,9 +17,17 @@
 - Kubernetes
 - Skaffold
 - Macos Docker Desktop
-
-### Some fix
+## Running Application
+Configure hostname to your prefer.
+```
+https://github.com/openmymai/nodemicroservice.git
+cd nodemicroservice
+skaffold dev
+```
+Browse to http://[hostname]/api/users/currentuser
+## Some fixes
 From first running, it does not work because it cannot pull ingress-controller image.
+
 <img width="693" alt="Screenshot 2023-01-06 at 12 22 08 AM" src="https://user-images.githubusercontent.com/15844801/210831675-0557c4f6-0e83-4aab-b612-b75385087895.png">
 
 Then using following command to find the error.
