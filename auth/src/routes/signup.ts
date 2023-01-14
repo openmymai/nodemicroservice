@@ -1,7 +1,8 @@
 import express, { Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
+import { User } from '../models/user';
 import { RequestValidationError } from '../errors/request-validation-error';
-import { DatabaseConnectionError } from '../errors/database-connection-error';
+import { BadRequestError } from '../errors/bad-request-error';
 
 const router = express.Router();
 
@@ -17,7 +18,7 @@ router.post(
 			.withMessage('Password must be between 4 and 20 charactoers')
 	], 
 	// Add types for req, res
-	(req: Request, res: Response) => {
+	async (req: Request, res: Response) => {
 		const errors = validationResult(req);
 
 		if (!errors.isEmpty()) {
@@ -25,13 +26,18 @@ router.post(
 
 		}
 
-		// if (!email || typeof email !== 'string') {
-		//     res.status(400).send('Provide a valid email');
-		// }
-		console.log('Creating a user...');
-		throw new DatabaseConnectionError();
+		const { email, password } = req.body;
+
+		const existingUser = await User.findOne({ email });
 		
-		res.send({});
+		if (existingUser) {
+			throw new BadRequestError('Email in use');
+		}
+
+		const user = User.build({ email, password });
+		await user.save();
+
+		res.status(201).send(user);
 });
 
 export { router as signupRouter };
