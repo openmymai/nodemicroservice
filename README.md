@@ -24,7 +24,7 @@ https://github.com/openmymai/nodemicroservice.git
 cd nodemicroservice
 skaffold dev
 ```
-Browse to http://[hostname]/api/users/currentuser
+Browse to http://[hostname]/api/users/signup
 ## Some fixes
 From first running, it does not work because it cannot pull ingress-controller image.
 
