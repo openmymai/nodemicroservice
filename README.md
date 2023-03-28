@@ -1,7 +1,5 @@
-# React/TypeScript on Microservices Architecture
-Building applications is more than just meeting the client's needs. Due to the large system size, developers face various challenges, including the maintenance of the codebases, the implementation of new features, bug fixing, and managing user roles. At scale, these considerations are non-trivial, and developers have to use various methods when architecting systems to avoid them.
-
-Monolithic applications commonly encounter these problems, and distributed systems are typically used to alleviate these issues. A distributed system consists of various components spread out over the network that function independently. A distributed application consists of several loosely coupled microservices that work together to meet the user’s needs.
+# Ticketing Software - React/NextJS/TypeScript on Microservices Architecture
+Ticketing software is a full stack application. On the frontend, it use React and Next JS to present content to users. Each service is created using Node and Express. Data for each service is held in either a Mongo database. The entire app is deployed and runs in Docker containers executed in a Kubernetes cluster. Finally, almost all of the code is written with Typescript.
 
 ## Benefits of microservice architecture
 Since microservices are loosely coupled and have a clearly defined purpose, the application is easier to manage and understand. Here are a few key benefits of using a microservice-based architecture:
