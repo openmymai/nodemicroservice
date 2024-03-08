@@ -33,7 +33,7 @@ Then using following command to find the error.
 kubectl describe <error pod>
 ```
 <img width="809" alt="Screenshot 2023-01-06 at 12 33 21 AM" src="https://user-images.githubusercontent.com/15844801/210831893-fd198165-d90d-49bd-a021-6b7c27dee8b4.png">
-It display error message.
+Error message.
 
 <img width="1449" alt="Screenshot 2023-01-06 at 12 22 36 AM" src="https://user-images.githubusercontent.com/15844801/210832160-1aa6f8f6-789f-4af2-ad61-b9166519cabd.png">
 
