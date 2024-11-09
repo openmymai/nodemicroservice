@@ -18,7 +18,7 @@ Since microservices are loosely coupled and have a clearly defined purpose, the 
 ## Running Application
 Configure hostname to your prefer.
 ```
-https://github.com/openmymai/nodemicroservice.git
+git clone https://github.com/openmymai/nodemicroservice.git
 cd nodemicroservice
 skaffold dev
 ```
