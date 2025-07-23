@@ -54,3 +54,7 @@ Finally, it's work and get "Running".
 
 More information of Ingress
 [https://github.com/kubernetes/ingress-nginx/tree/main](https://github.com/kubernetes/ingress-nginx/tree/main)
+
+<a href="https://www.buymeacoffee.com/maicmi">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" height="25">
+</a>
