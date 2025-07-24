@@ -1,60 +1,122 @@
-# Ticketing Software - React/NextJS/TypeScript on Microservices Architecture
-Ticketing software is a full stack application. On the frontend, it use React and Next JS to present content to users. Each service is created using Node and Express. Data for each service is held in either a Mongo database. The entire app is deployed and runs in Docker containers executed in a Kubernetes cluster. Finally, almost all of the code is written with Typescript.
+<div align="center">
+  <a href="https://www.buymeacoffee.com/maicmi" target="_blank">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" height="45">
+  </a>
+  <br/>
+  <small>If this microservices example helps you learn or build, consider supporting my work!</small>
+</div>
 
-## Benefits of microservice architecture
-Since microservices are loosely coupled and have a clearly defined purpose, the application is easier to manage and understand. Here are a few key benefits of using a microservice-based architecture:
-- **Scalability** is easy, as you can think of the whole system as a collection of services, each interfacing with other microservices. This allows you to scale up, down, or out based on the resources needed by individual microservices instead of the entire application (i.e., monolithic architecture).
-- **Simplified developer experience** so that a new developer joining the team does not have to understand the entire system but only the context of the service they are working on. This improves productivity as they can focus on a single code base and its functionality.
-- **Platform independence and flexibility** so that developers can choose the best tools for the job when building services for the system.
+<br/>
 
-## Tech Stack
-- TypeScript
-- NodeJS
-- Ingress NGINX
-- Docker
-- Kubernetes
-- Skaffold
-- Macos Docker Desktop
-## Running Application
-Configure hostname to your prefer.
-```
-git clone https://github.com/openmymai/nodemicroservice.git
-cd nodemicroservice
-skaffold dev
-```
-Browse to http://[hostname]/api/users/signup
-## Some fixes
-#### Install Ingress to your Kubernetes
-```
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0-beta.0/deploy/static/provider/cloud/deploy.yaml
-```
+# Microservices Ticketing App 🎟️
 
-From first running, it does not work because it cannot pull ingress-controller image.
+This repository contains a full-stack ticketing application built from the ground up to demonstrate a **microservices architecture**. The system is designed to be scalable, resilient, and maintainable, serving as a practical example for learning advanced backend concepts.
 
-<img width="693" alt="Screenshot 2023-01-06 at 12 22 08 AM" src="https://user-images.githubusercontent.com/15844801/210831675-0557c4f6-0e83-4aab-b612-b75385087895.png">
+![NodeJS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-Then using following command to find the error.
-```
-kubectl describe <error pod>
-```
-<img width="809" alt="Screenshot 2023-01-06 at 12 33 21 AM" src="https://user-images.githubusercontent.com/15844801/210831893-fd198165-d90d-49bd-a021-6b7c27dee8b4.png">
-Error message.
+---
 
-<img width="1449" alt="Screenshot 2023-01-06 at 12 22 36 AM" src="https://user-images.githubusercontent.com/15844801/210832160-1aa6f8f6-789f-4af2-ad61-b9166519cabd.png">
+## ✨ Architecture Overview
 
-Then try to pull image using 
-```
-docker pull <image>
-```
-<img width="668" alt="Screenshot 2023-01-06 at 12 22 53 AM" src="https://user-images.githubusercontent.com/15844801/210832356-4ccdd0bf-321a-40d5-8fea-b2c8dc2e38f1.png">
+This project is composed of several loosely coupled services that communicate with each other. This approach offers several key benefits over a traditional monolithic architecture:
 
-Finally, it's work and get "Running".
+-   **Scalability**: Each service can be scaled independently based on its specific resource needs, leading to more efficient resource utilization.
+-   **Simplified Developer Experience**: New developers can focus on a single service and its functionality without needing to understand the entire system, boosting productivity.
+-   **Flexibility & Independence**: Each microservice can potentially use a different technology stack, allowing developers to choose the best tool for the job.
 
-<img width="634" alt="Screenshot 2023-01-06 at 12 23 06 AM" src="https://user-images.githubusercontent.com/15844801/210832410-2451c3fa-e58f-467b-9c6b-215d9b59b4b4.png">
+### Services Included:
+-   **Auth Service**: Manages user sign-up, sign-in, and authentication.
+-   **Tickets Service**: Handles creation, updates, and retrieval of tickets.
+-   **Orders Service**: Manages the process of ordering tickets.
+-   **Expiration Service**: A background worker to handle ticket reservation expirations.
+-   **Payments Service**: Processes payments for orders.
+-   ... and more, all communicating via an event bus.
 
-More information of Ingress
-[https://github.com/kubernetes/ingress-nginx/tree/main](https://github.com/kubernetes/ingress-nginx/tree/main)
+---
 
-<a href="https://www.buymeacoffee.com/maicmi">
-  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" height="25">
-</a>
+## 🛠️ Tech Stack
+
+-   **Backend**: Node.js, Express.js
+-   **Frontend**: Next.js, React
+-   **Language**: TypeScript
+-   **Database**: MongoDB
+-   **Containerization**: Docker
+-   **Orchestration**: Kubernetes
+-   **Development Workflow**: Skaffold
+-   **API Gateway**: Ingress-NGINX
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to get the entire application running locally on your machine.
+
+### Prerequisites
+
+-   [Docker Desktop](https://www.docker.com/products/docker-desktop/) with Kubernetes enabled.
+-   [Skaffold](https://skaffold.dev/docs/install/) installed on your machine.
+-   [Node.js](https://nodejs.org/) and npm.
+
+### 1. Configure Your Hosts File
+
+For Ingress-NGINX to route traffic correctly on your local machine, you need to map a custom domain to your localhost IP.
+
+-   Open your hosts file:
+    -   **macOS/Linux**: `/etc/hosts`
+    -   **Windows**: `C:\Windows\System32\drivers\etc\hosts`
+-   Add the following line to the end of the file:
+    ```
+    127.0.0.1   ticketing.dev
+    ```
+    *(You can use any domain you like, but this README will use `ticketing.dev`)*
+
+### 2. Set Up Ingress-NGINX Controller
+
+The Ingress controller acts as the entry point to your Kubernetes cluster, routing external requests to the correct services.
+
+-   Apply the official NGINX Ingress manifest to your cluster. This command sets up all the necessary resources.
+    ```bash
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+    ```
+-   Wait a minute or two for the controller to be fully up and running. You can check its status with `kubectl get pods -n ingress-nginx`.
+
+### 3. Launch the Application
+
+Now you are ready to launch the entire microservices stack.
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/openmymai/nodemicroservice.git
+    cd nodemicroservice
+    ```
+
+2.  **Start the development environment:**
+    ```bash
+    skaffold dev
+    ```
+    Skaffold will now build all the Docker images, deploy them to your Kubernetes cluster, and watch for file changes to enable hot-reloading. This process may take several minutes on the first run.
+
+---
+
+## ✅ Accessing the Application
+
+Once Skaffold reports that all services are running and stable, you can access the application in your browser:
+
+-   **Main Application**: [http://ticketing.dev](http://ticketing.dev)
+
+You can also test individual API endpoints, for example:
+-   **Sign-up endpoint**: [http://ticketing.dev/api/users/signup](http://ticketing.dev/api/users/signup)
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Please feel free to check the issues page.
+
+## 📜 License
+
+This project is available for educational purposes. Please refer to the license details within the repository.
